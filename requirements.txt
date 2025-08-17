@@ -1,0 +1,8 @@
+streamlit
+pandas
+openpyxl
+python-dotenv
+jinja2
+email-validator
+tqdm
+sqlite-utils 
