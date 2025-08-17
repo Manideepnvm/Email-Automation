@@ -45,21 +45,31 @@ def main():
         st.sidebar.code("cp env_example.txt .env")
         return
     
+    # Initialize current page in session state
+    if 'current_page' not in st.session_state:
+        st.session_state.current_page = "🏠 Dashboard"
+    
     # Navigation
     page = st.sidebar.selectbox(
         "Choose a page:",
-        ["🏠 Dashboard", "📁 Upload & Validate", "✍️ Compose Email", "📤 Send Campaign", "📊 Campaign History"]
+        ["🏠 Dashboard", "📁 Upload & Validate", "✍️ Compose Email", "📤 Send Campaign", "📊 Campaign History"],
+        index=["🏠 Dashboard", "📁 Upload & Validate", "✍️ Compose Email", "📤 Send Campaign", "📊 Campaign History"].index(st.session_state.current_page)
     )
     
-    if page == "🏠 Dashboard":
+    # Update session state when page changes
+    if page != st.session_state.current_page:
+        st.session_state.current_page = page
+    
+    # Show the selected page
+    if st.session_state.current_page == "🏠 Dashboard":
         show_dashboard()
-    elif page == "📁 Upload & Validate":
+    elif st.session_state.current_page == "📁 Upload & Validate":
         show_upload_validate()
-    elif page == "✍️ Compose Email":
+    elif st.session_state.current_page == "✍️ Compose Email":
         show_compose_email()
-    elif page == "📤 Send Campaign":
+    elif st.session_state.current_page == "📤 Send Campaign":
         show_send_campaign()
-    elif page == "📊 Campaign History":
+    elif st.session_state.current_page == "📊 Campaign History":
         show_campaign_history()
 
 def show_dashboard():
@@ -95,13 +105,13 @@ def show_dashboard():
         st.subheader("🚀 Quick Actions")
         
         if st.button("📁 Upload New File"):
-            st.switch_page("📁 Upload & Validate")
+            st.session_state.current_page = "📁 Upload & Validate"
         
         if st.button("✍️ Compose Email"):
-            st.switch_page("✍️ Compose Email")
+            st.session_state.current_page = "✍️ Compose Email"
         
         if st.button("📤 Send Campaign"):
-            st.switch_page("📤 Send Campaign")
+            st.session_state.current_page = "📤 Send Campaign"
         
         # SMTP Status
         st.subheader("🔧 SMTP Status")
@@ -249,7 +259,8 @@ def show_compose_email():
     
     if st.session_state.recipients_df is None:
         st.warning("⚠️ Please upload and validate a file first!")
-        st.button("📁 Go to Upload", on_click=lambda: st.switch_page("📁 Upload & Validate"))
+        if st.button("📁 Go to Upload"):
+            st.session_state.current_page = "📁 Upload & Validate"
         return
     
     # Email composition form
@@ -369,7 +380,8 @@ def show_send_campaign():
     
     if st.session_state.current_campaign is None:
         st.warning("⚠️ No campaign ready to send!")
-        st.button("✍️ Compose Email", on_click=lambda: st.switch_page("✍️ Compose Email"))
+        if st.button("✍️ Compose Email"):
+            st.session_state.current_page = "✍️ Compose Email"
         return
     
     campaign = st.session_state.current_campaign
