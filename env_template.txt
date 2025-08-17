@@ -1,0 +1,19 @@
+# Copy this file to .env and fill in your actual Gmail credentials
+# 
+# STEP 1: Enable 2-Factor Authentication on your Gmail account
+# STEP 2: Generate an App Password (not your regular password)
+# STEP 3: Replace the values below with your actual information
+#
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your.actual.email@gmail.com
+SMTP_PASS=your_16_character_app_password
+SENDER_NAME=Your Real Name
+REPLY_TO=your.reply.email@gmail.com
+RATE_PER_MIN=60
+
+# Example:
+# SMTP_USER=john.doe@gmail.com
+# SMTP_PASS=abcd efgh ijkl mnop
+# SENDER_NAME=John Doe
+# REPLY_TO=john.doe@gmail.com

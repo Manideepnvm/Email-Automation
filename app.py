@@ -24,6 +24,228 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Custom CSS for better styling
+st.markdown("""
+<style>
+    /* Simple, professional color scheme */
+    .main-header {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        color: #495057;
+        text-align: center;
+    }
+    
+    .metric-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #495057;
+        text-align: center;
+        margin: 0.5rem 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .success-card {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #155724;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    
+    .warning-card {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #856404;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    
+    .info-card {
+        background: #d1ecf1;
+        border: 1px solid #bee5eb;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #0c5460;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    
+    .error-card {
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #721c24;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    
+    /* Sidebar styling */
+    .css-1d391kg {
+        background: #f8f9fa;
+    }
+    
+    .css-1d391kg .css-1v0mbdj {
+        background: #f8f9fa;
+    }
+    
+    /* Button styling */
+    .stButton > button {
+        background: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .stButton > button:hover {
+        background: #5a6268;
+        transform: none;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .stButton > button:active {
+        transform: none;
+    }
+    
+    /* Primary button */
+    .stButton > button[data-baseweb="button"] {
+        background: #007bff;
+    }
+    
+    .stButton > button[data-baseweb="button"]:hover {
+        background: #0056b3;
+    }
+    
+    /* Upload area */
+    .upload-area {
+        border: 2px dashed #6c757d;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+        background: #f8f9fa;
+        color: #6c757d;
+    }
+    
+    /* Progress container */
+    .progress-container {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    /* Campaign card */
+    .campaign-card {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border-left: 4px solid #6c757d;
+    }
+    
+    /* Metric styling */
+    .metric-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0.5rem 0;
+        color: #495057;
+    }
+    
+    .metric-label {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        color: #6c757d;
+    }
+    
+    /* Status colors */
+    .status-success {
+        color: #28a745;
+        font-weight: bold;
+    }
+    
+    .status-error {
+        color: #dc3545;
+        font-weight: bold;
+    }
+    
+    .status-warning {
+        color: #ffc107;
+        font-weight: bold;
+    }
+    
+    /* Form elements */
+    .stDataFrame {
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #e9ecef;
+    }
+    
+    .stSelectbox > div > div {
+        border-radius: 6px;
+    }
+    
+    .stTextInput > div > div > input {
+        border-radius: 6px;
+    }
+    
+    .stTextArea > div > div > textarea {
+        border-radius: 6px;
+    }
+    
+    .stSlider > div > div > div > div {
+        border-radius: 6px;
+    }
+    
+    .stCheckbox > div > div {
+        border-radius: 4px;
+    }
+    
+    .stNumberInput > div > div > input {
+        border-radius: 6px;
+    }
+    
+    .stFileUploader > div {
+        border-radius: 8px;
+    }
+    
+    /* Navigation styling */
+    .nav-container {
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .nav-title {
+        color: #495057;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Hide Streamlit default elements */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
+
 # Initialize session state
 if 'current_campaign' not in st.session_state:
     st.session_state.current_campaign = None
@@ -35,13 +257,13 @@ if 'column_mapping' not in st.session_state:
 def main():
     """Main application function."""
     
-    # Sidebar
-    st.sidebar.title("📧 Email Automation")
+    # Sidebar with clean styling
+    st.sidebar.markdown('<div class="nav-container"><div class="nav-title">📧 Email Automation</div><p style="margin: 0; color: #6c757d; font-size: 0.9rem;">Professional Bulk Email Tool</p></div>', unsafe_allow_html=True)
     
     # Check if credentials are configured
     if not settings.SMTP_USER or not settings.SMTP_PASS:
-        st.sidebar.error("⚠️ SMTP credentials not configured!")
-        st.sidebar.info("Please copy env_example.txt to .env and add your SMTP credentials.")
+        st.sidebar.markdown('<div class="warning-card"><div class="metric-value">⚠️</div><div class="metric-label">SMTP Not Configured</div><p>Please create a .env file with your credentials</p></div>', unsafe_allow_html=True)
+        st.sidebar.info("Copy env_example.txt to .env and add your SMTP credentials")
         st.sidebar.code("cp env_example.txt .env")
         return
     
@@ -49,7 +271,9 @@ def main():
     if 'current_page' not in st.session_state:
         st.session_state.current_page = "🏠 Dashboard"
     
-    # Navigation
+    # Navigation with clean styling
+    st.sidebar.markdown('<div class="nav-container"><div class="nav-title">🧭 Navigation</div></div>', unsafe_allow_html=True)
+    
     page = st.sidebar.selectbox(
         "Choose a page:",
         ["🏠 Dashboard", "📁 Upload & Validate", "✍️ Compose Email", "📤 Send Campaign", "📊 Campaign History"],
@@ -74,64 +298,76 @@ def main():
 
 def show_dashboard():
     """Show dashboard with overview and quick actions."""
-    st.title("🏠 Dashboard")
+    # Main header with gradient
+    st.markdown('<div class="main-header"><h1>🚀 Bulk Email Automation Dashboard</h1><p>Professional email campaigns made simple</p></div>', unsafe_allow_html=True)
     
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.header("Welcome to Bulk Email Automation")
-        st.write("""
-        This tool helps you send personalized bulk emails with ease. Here's what you can do:
+        st.markdown("""
+        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+            <h3>🎯 What You Can Do</h3>
+            <ul style="font-size: 1.1rem; line-height: 2;">
+                <li><strong>📁 Upload</strong> CSV, Excel, or text files with email addresses</li>
+                <li><strong>🔍 Validate</strong> and clean your email list automatically</li>
+                <li><strong>✍️ Personalize</strong> emails with smart templates and placeholders</li>
+                <li><strong>📤 Send</strong> campaigns with intelligent rate limiting</li>
+                <li><strong>📊 Monitor</strong> results and retry failed emails</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
         
-        - **Upload** CSV, Excel, or text files with email addresses
-        - **Validate** and clean your email list
-        - **Personalize** emails with templates and placeholders
-        - **Send** campaigns with rate limiting and tracking
-        - **Monitor** results and retry failed emails
-        """)
-        
-        # Quick stats
+        # Quick stats with styled cards
         if st.session_state.recipients_df is not None:
-            st.subheader("📊 Current Recipients")
+            st.subheader("📊 Campaign Statistics")
             total = len(st.session_state.recipients_df)
-            st.metric("Total Recipients", total)
+            
+            col1_1, col1_2, col1_3 = st.columns(3)
+            with col1_1:
+                st.markdown(f'<div class="metric-card"><div class="metric-value">{total}</div><div class="metric-label">Total Recipients</div></div>', unsafe_allow_html=True)
             
             if 'is_valid' in st.session_state.recipients_df.columns:
                 valid = st.session_state.recipients_df['is_valid'].sum()
-                st.metric("Valid Emails", valid)
-                st.metric("Invalid Emails", total - valid)
+                invalid = total - valid
+                
+                with col1_2:
+                    st.markdown(f'<div class="success-card"><div class="metric-value">{valid}</div><div class="metric-label">Valid Emails</div></div>', unsafe_allow_html=True)
+                
+                with col1_3:
+                    st.markdown(f'<div class="warning-card"><div class="metric-value">{invalid}</div><div class="metric-label">Invalid Emails</div></div>', unsafe_allow_html=True)
     
     with col2:
-        st.subheader("🚀 Quick Actions")
+        st.markdown('<div class="info-card"><h3>🚀 Quick Actions</h3></div>', unsafe_allow_html=True)
         
-        if st.button("📁 Upload New File"):
+        if st.button("📁 Upload New File", key="upload_btn"):
             st.session_state.current_page = "📁 Upload & Validate"
         
-        if st.button("✍️ Compose Email"):
+        if st.button("✍️ Compose Email", key="compose_btn"):
             st.session_state.current_page = "✍️ Compose Email"
         
-        if st.button("📤 Send Campaign"):
+        if st.button("📤 Send Campaign", key="send_btn"):
             st.session_state.current_page = "📤 Send Campaign"
         
-        # SMTP Status
-        st.subheader("🔧 SMTP Status")
+        # SMTP Status with better styling
+        st.markdown('<div class="metric-card"><h3>🔧 SMTP Status</h3></div>', unsafe_allow_html=True)
         try:
             mailer = EmailMailer()
             success, message = mailer.test_connection()
             if success:
-                st.success("✅ Connected")
+                st.markdown('<div class="success-card"><div class="metric-value">✅</div><div class="metric-label">Connected</div></div>', unsafe_allow_html=True)
             else:
-                st.error("❌ Connection Failed")
-                st.caption(message)
+                st.markdown('<div class="warning-card"><div class="metric-value">❌</div><div class="metric-label">Connection Failed</div></div>', unsafe_allow_html=True)
+                st.caption(f"Error: {message}")
         except Exception as e:
-            st.error(f"❌ Configuration Error: {e}")
+            st.markdown('<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Configuration Error</div></div>', unsafe_allow_html=True)
+            st.caption(f"Error: {str(e)}")
 
 def show_upload_validate():
     """Show file upload and validation page."""
-    st.title("📁 Upload & Validate")
+    st.markdown('<div class="main-header"><h1>📁 Upload & Validate</h1><p>Upload your email list and validate it automatically</p></div>', unsafe_allow_html=True)
     
-    # File upload
-    st.header("1. Upload File")
+    # File upload with styled area
+    st.markdown('<div class="upload-area"><h3>📁 Step 1: Upload Your File</h3></div>', unsafe_allow_html=True)
     uploaded_file = st.file_uploader(
         "Choose a file",
         type=['csv', 'xlsx', 'txt'],
@@ -151,15 +387,15 @@ def show_upload_validate():
             # Auto-detect email column
             email_column = FileParser.auto_detect_email_column(df)
             
-            st.success(f"✅ File uploaded successfully! Found {len(df)} rows and {len(columns)} columns.")
+            st.markdown(f'<div class="success-card"><div class="metric-value">✅</div><div class="metric-label">File uploaded successfully!</div><p>Found {len(df)} rows and {len(columns)} columns</p></div>', unsafe_allow_html=True)
             
             # Show preview
-            st.subheader("📋 File Preview")
+            st.markdown('<div class="info-card"><h3>📋 File Preview</h3></div>', unsafe_allow_html=True)
             preview_df = FileParser.get_preview(df, 10)
             st.dataframe(preview_df, use_container_width=True)
             
             # Column selection
-            st.header("2. Configure Columns")
+            st.markdown('<div class="metric-card"><h3>⚙️ Step 2: Configure Columns</h3></div>', unsafe_allow_html=True)
             
             col1, col2 = st.columns(2)
             
@@ -217,59 +453,60 @@ def show_upload_validate():
                     st.session_state.recipients_df = df_valid
                     
                     # Show validation results
-                    st.header("3. Validation Results")
+                    st.markdown('<div class="success-card"><h3>🎯 Step 3: Validation Results</h3></div>', unsafe_allow_html=True)
                     
                     summary = EmailValidator.get_validation_summary(df_deduped)
                     
                     col1, col2, col3, col4 = st.columns(4)
                     with col1:
-                        st.metric("Total Emails", summary['total_emails'])
+                        st.markdown(f'<div class="metric-card"><div class="metric-value">{summary["total_emails"]}</div><div class="metric-label">Total Emails</div></div>', unsafe_allow_html=True)
                     with col2:
-                        st.metric("Valid Emails", summary['valid_emails'])
+                        st.markdown(f'<div class="success-card"><div class="metric-value">{summary["valid_emails"]}</div><div class="metric-label">Valid Emails</div></div>', unsafe_allow_html=True)
                     with col3:
-                        st.metric("Invalid Emails", summary['invalid_emails'])
+                        st.markdown(f'<div class="warning-card"><div class="metric-value">{summary["invalid_emails"]}</div><div class="metric-label">Invalid Emails</div></div>', unsafe_allow_html=True)
                     with col4:
-                        st.metric("Success Rate", f"{summary['valid_percentage']}%")
+                        st.markdown(f'<div class="info-card"><div class="metric-value">{summary["valid_percentage"]}%</div><div class="metric-label">Success Rate</div></div>', unsafe_allow_html=True)
                     
                     # Show validation details
                     if summary['invalid_emails'] > 0:
-                        st.subheader("❌ Invalid Emails")
+                        st.markdown('<div class="warning-card"><h3>❌ Invalid Emails</h3></div>', unsafe_allow_html=True)
                         invalid_df = df_deduped[~df_deduped['is_valid']]
                         st.dataframe(invalid_df[['email_original', 'validation_error']], use_container_width=True)
                     
                     # Show valid emails
-                    st.subheader("✅ Valid Emails")
+                    st.markdown('<div class="success-card"><h3>✅ Valid Emails</h3></div>', unsafe_allow_html=True)
                     st.dataframe(df_valid[['email_clean', 'name', 'company']].head(20), use_container_width=True)
                     
                     if len(df_valid) > 20:
                         st.caption(f"Showing first 20 of {len(df_valid)} valid emails")
                     
-                    st.success(f"✅ Validation complete! {summary['valid_emails']} emails ready for sending.")
+                    st.markdown(f'<div class="success-card"><div class="metric-value">🎉</div><div class="metric-label">Validation Complete!</div><p>{summary["valid_emails"]} emails ready for sending</p></div>', unsafe_allow_html=True)
             
             # Clean up temp file
             os.unlink(tmp_file_path)
             
         except Exception as e:
-            st.error(f"❌ Error processing file: {e}")
+            st.markdown(f'<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Error processing file</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
             os.unlink(tmp_file_path)
 
 def show_compose_email():
     """Show email composition page."""
-    st.title("✍️ Compose Email")
+    st.markdown('<div class="main-header"><h1>✍️ Compose Email</h1><p>Create your personalized email campaign</p></div>', unsafe_allow_html=True)
     
     if st.session_state.recipients_df is None:
-        st.warning("⚠️ Please upload and validate a file first!")
+        st.markdown('<div class="warning-card"><div class="metric-value">⚠️</div><div class="metric-label">No Recipients Found</div><p>Please upload and validate a file first!</p></div>', unsafe_allow_html=True)
         if st.button("📁 Go to Upload"):
             st.session_state.current_page = "📁 Upload & Validate"
         return
     
     # Email composition form
-    st.header("Compose Your Email")
+    st.markdown('<div class="metric-card"><h3>✍️ Compose Your Email</h3></div>', unsafe_allow_html=True)
     
     col1, col2 = st.columns([2, 1])
     
     with col1:
         # Basic email details
+        st.markdown('<div class="info-card"><h4>📧 Basic Details</h4></div>', unsafe_allow_html=True)
         sender_name = st.text_input("From Name:", value=settings.SENDER_NAME)
         subject = st.text_input("Subject:", placeholder="Enter email subject...")
         
@@ -277,6 +514,7 @@ def show_compose_email():
         template_type = st.selectbox("Email Type:", ["plain", "html"])
         
         # Message content
+        st.markdown('<div class="info-card"><h4>💬 Message Content</h4></div>', unsafe_allow_html=True)
         message = st.text_area(
             "Message:",
             height=200,
@@ -309,22 +547,22 @@ def show_compose_email():
                         st.text(preview['personalized_content'])
     
     with col2:
-        st.subheader("📊 Campaign Info")
+        st.markdown('<div class="info-card"><h3>📊 Campaign Info</h3></div>', unsafe_allow_html=True)
         
         total_recipients = len(st.session_state.recipients_df)
-        st.metric("Recipients", total_recipients)
+        st.markdown(f'<div class="metric-card"><div class="metric-value">{total_recipients}</div><div class="metric-label">Recipients</div></div>', unsafe_allow_html=True)
         
         # Rate limiting
-        st.subheader("⏱️ Rate Limiting")
+        st.markdown('<div class="warning-card"><h4>⏱️ Rate Limiting</h4></div>', unsafe_allow_html=True)
         rate_per_min = st.slider("Emails per minute:", 10, 200, 60)
         
         # Estimate completion time
         rate_limiter = RateLimiter(rate_per_min)
         eta_minutes = rate_limiter.estimate_completion_time(total_recipients)
-        st.metric("Estimated Time", f"{eta_minutes:.1f} min")
+        st.markdown(f'<div class="metric-card"><div class="metric-value">{eta_minutes:.1f}</div><div class="metric-label">Estimated Time (min)</div></div>', unsafe_allow_html=True)
         
         # Attachments
-        st.subheader("📎 Attachments")
+        st.markdown('<div class="info-card"><h4>📎 Attachments</h4></div>', unsafe_allow_html=True)
         attachments = st.file_uploader(
             "Add attachments:",
             accept_multiple_files=True,
@@ -332,7 +570,7 @@ def show_compose_email():
         )
         
         if attachments:
-            st.write(f"📎 {len(attachments)} file(s) selected")
+            st.markdown(f'<div class="success-card"><div class="metric-value">📎</div><div class="metric-label">{len(attachments)} file(s) selected</div></div>', unsafe_allow_html=True)
     
     # Save campaign
     if st.button("💾 Save Campaign"):
@@ -372,14 +610,14 @@ def show_compose_email():
             st.info("Go to 'Send Campaign' page to start sending emails.")
             
         except Exception as e:
-            st.error(f"❌ Error saving campaign: {e}")
+            st.markdown(f'<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Error saving campaign</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
 
 def show_send_campaign():
     """Show campaign sending page."""
-    st.title("📤 Send Campaign")
+    st.markdown('<div class="main-header"><h1>📤 Send Campaign</h1><p>Send your email campaign to all recipients</p></div>', unsafe_allow_html=True)
     
     if st.session_state.current_campaign is None:
-        st.warning("⚠️ No campaign ready to send!")
+        st.markdown('<div class="warning-card"><div class="metric-value">⚠️</div><div class="metric-label">No Campaign Ready</div><p>Please compose an email first!</p></div>', unsafe_allow_html=True)
         if st.button("✍️ Compose Email"):
             st.session_state.current_page = "✍️ Compose Email"
         return
@@ -387,22 +625,22 @@ def show_send_campaign():
     campaign = st.session_state.current_campaign
     
     # Campaign summary
-    st.header("Campaign Summary")
+    st.markdown('<div class="metric-card"><h3>📊 Campaign Summary</h3></div>', unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Subject", campaign['subject'])
-        st.metric("Template Type", campaign['template_type'].upper())
+        st.markdown(f'<div class="info-card"><div class="metric-value">📧</div><div class="metric-label">{campaign["subject"]}</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="info-card"><div class="metric-value">{campaign["template_type"].upper()}</div><div class="metric-label">Template Type</div></div>', unsafe_allow_html=True)
     with col2:
-        st.metric("Sender", campaign['sender_name'])
-        st.metric("Rate Limit", f"{campaign['rate_per_min']}/min")
+        st.markdown(f'<div class="info-card"><div class="metric-value">👤</div><div class="metric-label">{campaign["sender_name"]}</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="info-card"><div class="metric-value">{campaign["rate_per_min"]}/min</div><div class="metric-label">Rate Limit</div></div>', unsafe_allow_html=True)
     with col3:
-        st.metric("Recipients", len(st.session_state.recipients_df))
+        st.markdown(f'<div class="success-card"><div class="metric-value">{len(st.session_state.recipients_df)}</div><div class="metric-label">Recipients</div></div>', unsafe_allow_html=True)
         if campaign['attachments']:
-            st.metric("Attachments", len(campaign['attachments']))
+            st.markdown(f'<div class="info-card"><div class="metric-value">📎</div><div class="metric-label">{len(campaign["attachments"])} Attachments</div></div>', unsafe_allow_html=True)
     
     # Test send
-    st.header("🧪 Test Send")
+    st.markdown('<div class="warning-card"><h3>🧪 Test Send</h3></div>', unsafe_allow_html=True)
     
     test_email = st.text_input("Test Email Address:", placeholder="Enter email for test send")
     
@@ -411,7 +649,7 @@ def show_send_campaign():
     with col1:
         if st.button("📧 Send Test Email"):
             if not test_email:
-                st.error("Please enter a test email address!")
+                st.markdown('<div class="warning-card"><div class="metric-value">⚠️</div><div class="metric-label">Please enter a test email address!</div></div>', unsafe_allow_html=True)
                 return
             
             try:
@@ -429,12 +667,12 @@ def show_send_campaign():
                 )
                 
                 if success:
-                    st.success("✅ Test email sent successfully!")
+                    st.markdown('<div class="success-card"><div class="metric-value">✅</div><div class="metric-label">Test email sent successfully!</div></div>', unsafe_allow_html=True)
                 else:
-                    st.error(f"❌ Test email failed: {message}")
+                    st.markdown(f'<div class="warning-card"><div class="metric-value">❌</div><div class="metric-label">Test email failed</div><p>{message}</p></div>', unsafe_allow_html=True)
                     
             except Exception as e:
-                st.error(f"❌ Error sending test email: {e}")
+                st.markdown(f'<div class="warning-card"><div class="metric-value">❌</div><div class="metric-label">Error sending test email</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
     
     with col2:
         if st.button("🔄 Test SMTP Connection"):
@@ -443,24 +681,26 @@ def show_send_campaign():
                 success, message = mailer.test_connection()
                 
                 if success:
-                    st.success("✅ SMTP connection successful!")
+                    st.markdown('<div class="success-card"><div class="metric-value">✅</div><div class="metric-label">SMTP connection successful!</div></div>', unsafe_allow_html=True)
                 else:
-                    st.error(f"❌ SMTP connection failed: {message}")
+                    st.markdown(f'<div class="warning-card"><div class="metric-value">❌</div><div class="metric-label">SMTP connection failed</div><p>{message}</p></div>', unsafe_allow_html=True)
                     
             except Exception as e:
-                st.error(f"❌ Error testing connection: {e}")
+                st.markdown(f'<div class="warning-card"><div class="metric-value">❌</div><div class="metric-label">Error testing connection</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
     
     # Send campaign
-    st.header("📤 Send Campaign")
+    st.markdown('<div class="metric-card"><h3>📤 Send Campaign</h3></div>', unsafe_allow_html=True)
     
     # Options
     col1, col2 = st.columns(2)
     
     with col1:
+        st.markdown('<div class="info-card"><h4>⚙️ Send Options</h4></div>', unsafe_allow_html=True)
         continue_on_error = st.checkbox("Continue on error", value=True)
         max_retries = st.slider("Max retries", 1, 5, 3)
     
     with col2:
+        st.markdown('<div class="info-card"><h4>📊 Batch Settings</h4></div>', unsafe_allow_html=True)
         batch_size = st.slider("Batch size", 10, 100, 50)
         delay_between_batches = st.number_input("Delay between batches (seconds)", 1, 60, 5)
     
@@ -470,8 +710,8 @@ def show_send_campaign():
     
     # Send button
     if st.button("🚀 Start Sending Campaign", type="primary"):
-        if not st.session_state.recipients_df is not None:
-            st.error("No recipients to send to!")
+        if st.session_state.recipients_df is None:
+            st.markdown('<div class="warning-card"><div class="metric-value">⚠️</div><div class="metric-label">No recipients to send to!</div></div>', unsafe_allow_html=True)
             return
         
         try:
@@ -488,7 +728,8 @@ def show_send_campaign():
                     'company': row.get('company', '')
                 })
             
-            # Progress bar
+            # Progress tracking with styled container
+            st.markdown('<div class="progress-container"><h4>📊 Sending Progress</h4></div>', unsafe_allow_html=True)
             progress_bar = st.progress(0)
             status_text = st.empty()
             
@@ -502,7 +743,7 @@ def show_send_campaign():
                 batch_num = i // batch_size + 1
                 total_batches = (total_recipients + batch_size - 1) // batch_size
                 
-                status_text.text(f"Sending batch {batch_num}/{total_batches}...")
+                status_text.text(f"📤 Sending batch {batch_num}/{total_batches}...")
                 
                 # Send batch
                 for j, recipient in enumerate(batch):
@@ -525,11 +766,11 @@ def show_send_campaign():
                         progress_bar.progress(current_progress)
                         
                         # Update status
-                        status_text.text(f"Sent: {successful}, Failed: {failed}, Progress: {current_progress:.1%}")
+                        status_text.text(f"📧 Sent: {successful}, ❌ Failed: {failed}, 📊 Progress: {current_progress:.1%}")
                         
                     except Exception as e:
                         failed += 1
-                        st.error(f"Error sending to {recipient['email']}: {e}")
+                        st.markdown(f'<div class="warning-card"><div class="metric-value">❌</div><div class="metric-label">Error sending to {recipient["email"]}</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
                 
                 # Delay between batches
                 if i + batch_size < total_recipients:
@@ -537,10 +778,10 @@ def show_send_campaign():
             
             # Final status
             progress_bar.progress(1.0)
-            status_text.text(f"Campaign completed! Sent: {successful}, Failed: {failed}")
+            status_text.text(f"🎉 Campaign completed! Sent: {successful}, Failed: {failed}")
             
-            st.success(f"✅ Campaign completed successfully!")
-            st.metric("Success Rate", f"{(successful / total_recipients) * 100:.1f}%")
+            st.markdown(f'<div class="success-card"><div class="metric-value">🎉</div><div class="metric-label">Campaign completed successfully!</div></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="info-card"><div class="metric-value">{(successful / total_recipients) * 100:.1f}%</div><div class="metric-label">Success Rate</div></div>', unsafe_allow_html=True)
             
             # Update campaign status in database
             logger = CampaignLogger()
@@ -551,11 +792,11 @@ def show_send_campaign():
                     logger.update_recipient_status(campaign['id'], recipient['email'], 'failed', 'Send error')
             
         except Exception as e:
-            st.error(f"❌ Error sending campaign: {e}")
+            st.markdown(f'<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Error sending campaign</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
 
 def show_campaign_history():
     """Show campaign history and results."""
-    st.title("📊 Campaign History")
+    st.markdown('<div class="main-header"><h1>📊 Campaign History</h1><p>View and manage your email campaigns</p></div>', unsafe_allow_html=True)
     
     try:
         logger = CampaignLogger()
@@ -603,7 +844,7 @@ def show_campaign_history():
                             retry_failed_emails(campaign['id'])
         
     except Exception as e:
-        st.error(f"❌ Error loading campaign history: {e}")
+        st.markdown(f'<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Error loading campaign history</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
 
 def show_campaign_details(campaign_id: int):
     """Show detailed campaign information."""
@@ -612,10 +853,10 @@ def show_campaign_details(campaign_id: int):
         summary = logger.get_campaign_summary(campaign_id)
         
         if not summary:
-            st.error("Campaign not found!")
+            st.markdown('<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Campaign not found!</div></div>', unsafe_allow_html=True)
             return
         
-        st.subheader(f"Campaign Details - {summary['subject']}")
+        st.markdown(f'<div class="main-header"><h2>📊 Campaign Details - {summary["subject"]}</h2></div>', unsafe_allow_html=True)
         
         # Summary metrics
         col1, col2, col3, col4 = st.columns(4)
@@ -655,15 +896,15 @@ def export_campaign_results(campaign_id: int):
         summary = logger.get_campaign_summary(campaign_id)
         
         if not summary:
-            st.error("Campaign not found!")
+            st.markdown('<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Campaign not found!</div></div>', unsafe_allow_html=True)
             return
         
         # Get all recipients for this campaign
         # This would require adding a method to get all recipients
-        st.info("Export functionality would be implemented here")
+        st.markdown('<div class="info-card"><div class="metric-value">📥</div><div class="metric-label">Export functionality would be implemented here</div></div>', unsafe_allow_html=True)
         
     except Exception as e:
-        st.error(f"❌ Error exporting results: {e}")
+        st.markdown(f'<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Error exporting results</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
 
 def retry_failed_emails(campaign_id: int):
     """Retry sending to failed recipients."""
@@ -672,13 +913,13 @@ def retry_failed_emails(campaign_id: int):
         failed_recipients = logger.get_failed_recipients(campaign_id)
         
         if not failed_recipients:
-            st.info("No failed recipients to retry!")
+            st.markdown('<div class="info-card"><div class="metric-value">📭</div><div class="metric-label">No failed recipients to retry!</div></div>', unsafe_allow_html=True)
             return
         
-        st.info(f"Retry functionality would be implemented here for {len(failed_recipients)} failed recipients")
+        st.markdown(f'<div class="info-card"><div class="metric-value">🔄</div><div class="metric-label">Retry functionality would be implemented here</div><p>For {len(failed_recipients)} failed recipients</p></div>', unsafe_allow_html=True)
         
     except Exception as e:
-        st.error(f"❌ Error retrying failed emails: {e}")
+        st.markdown(f'<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Error retrying failed emails</div><p>{str(e)}</p></div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main() 
