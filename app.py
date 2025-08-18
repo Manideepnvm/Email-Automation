@@ -271,13 +271,22 @@ def main():
     if 'current_page' not in st.session_state:
         st.session_state.current_page = "🏠 Dashboard"
     
-    # Navigation with clean styling
-    st.sidebar.markdown('<div class="nav-container"><div class="nav-title">🧭 Navigation</div></div>', unsafe_allow_html=True)
-    
-    page = st.sidebar.selectbox(
-        "Choose a page:",
-        ["🏠 Dashboard", "📁 Upload & Validate", "✍️ Compose Email", "📤 Send Campaign", "📊 Campaign History"],
-        index=["🏠 Dashboard", "📁 Upload & Validate", "✍️ Compose Email", "📤 Send Campaign", "📊 Campaign History"].index(st.session_state.current_page)
+    # Top navbar (horizontal)
+    st.markdown('<div class="nav-container"><div class="nav-title">🧭 Navigation</div></div>', unsafe_allow_html=True)
+    nav_options = [
+        "🏠 Dashboard",
+        "📁 Upload & Validate",
+        "✍️ Compose Email",
+        "📤 Send Campaign",
+        "📊 Campaign History",
+    ]
+    page = st.radio(
+        "Navigation",
+        nav_options,
+        index=nav_options.index(st.session_state.current_page),
+        horizontal=True,
+        label_visibility="collapsed",
+        key="top_nav",
     )
     
     # Update session state when page changes
