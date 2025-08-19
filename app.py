@@ -27,121 +27,103 @@ st.set_page_config(
 # Custom CSS for better styling
 st.markdown("""
 <style>
-    /* Simple, professional color scheme */
+    :root {
+        --bg: #faf9f7;
+        --card-bg: #ffffff;
+        --text: #2c3e50;
+        --muted-text: #6c757d;
+        --border: #e3e7ed;
+
+        --primary: #1f3a5f;           /* Classic navy */
+        --primary-hover: #162a46;
+        --accent: #d4af37;            /* Gold accent */
+
+        --success-bg: #e8f5e9;
+        --success-border: #c8e6c9;
+        --success-text: #1b5e20;
+
+        --warning-bg: #fff8e1;
+        --warning-border: #ffe082;
+        --warning-text: #8a6d1a;
+
+        --info-bg: #e8f1f8;
+        --info-border: #c9d7e8;
+        --info-text: #0c3c78;
+
+        --error-bg: #fdecea;
+        --error-border: #f5c6cb;
+        --error-text: #8b1c13;
+    }
+
+    /* Classic, attractive color scheme */
     .main-header {
-        background: #f8f9fa;
-        border: 1px solid #dee2e6;
+        background: var(--bg);
+        border: 1px solid var(--border);
         padding: 1.5rem;
         border-radius: 8px;
         margin-bottom: 1.5rem;
-        color: #495057;
+        color: var(--text);
         text-align: center;
+        border-left: 4px solid var(--accent);
     }
     
     .metric-card {
-        background: #ffffff;
-        border: 1px solid #e9ecef;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
         padding: 1rem;
         border-radius: 8px;
-        color: #495057;
+        color: var(--text);
         text-align: center;
         margin: 0.5rem 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.04);
     }
     
-    .success-card {
-        background: #d4edda;
-        border: 1px solid #c3e6cb;
-        padding: 1rem;
-        border-radius: 8px;
-        color: #155724;
-        text-align: center;
-        margin: 0.5rem 0;
-    }
-    
-    .warning-card {
-        background: #fff3cd;
-        border: 1px solid #ffeaa7;
-        padding: 1rem;
-        border-radius: 8px;
-        color: #856404;
-        text-align: center;
-        margin: 0.5rem 0;
-    }
-    
-    .info-card {
-        background: #d1ecf1;
-        border: 1px solid #bee5eb;
-        padding: 1rem;
-        border-radius: 8px;
-        color: #0c5460;
-        text-align: center;
-        margin: 0.5rem 0;
-    }
-    
-    .error-card {
-        background: #f8d7da;
-        border: 1px solid #f5c6cb;
-        padding: 1rem;
-        border-radius: 8px;
-        color: #721c24;
-        text-align: center;
-        margin: 0.5rem 0;
-    }
+    .success-card { background: var(--success-bg); border: 1px solid var(--success-border); padding: 1rem; border-radius: 8px; color: var(--success-text); text-align: center; margin: 0.5rem 0; }
+    .warning-card { background: var(--warning-bg); border: 1px solid var(--warning-border); padding: 1rem; border-radius: 8px; color: var(--warning-text); text-align: center; margin: 0.5rem 0; }
+    .info-card    { background: var(--info-bg);    border: 1px solid var(--info-border);    padding: 1rem; border-radius: 8px; color: var(--info-text);    text-align: center; margin: 0.5rem 0; }
+    .error-card   { background: var(--error-bg);   border: 1px solid var(--error-border);   padding: 1rem; border-radius: 8px; color: var(--error-text);   text-align: center; margin: 0.5rem 0; }
     
     /* Sidebar styling */
-    .css-1d391kg {
-        background: #f8f9fa;
-    }
-    
+    .css-1d391kg,
     .css-1d391kg .css-1v0mbdj {
-        background: #f8f9fa;
+        background: var(--bg);
     }
     
     /* Button styling */
     .stButton > button {
-        background: #6c757d;
-        color: white;
+        background: var(--primary);
+        color: #ffffff;
         border: none;
         border-radius: 6px;
         padding: 0.5rem 1rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
+        font-weight: 600;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
     }
     
     .stButton > button:hover {
-        background: #5a6268;
+        background: var(--primary-hover);
         transform: none;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.12);
     }
     
     .stButton > button:active {
         transform: none;
     }
     
-    /* Primary button */
-    .stButton > button[data-baseweb="button"] {
-        background: #007bff;
-    }
-    
-    .stButton > button[data-baseweb="button"]:hover {
-        background: #0056b3;
-    }
-    
     /* Upload area */
     .upload-area {
-        border: 2px dashed #6c757d;
+        border: 2px dashed var(--primary);
         border-radius: 8px;
         padding: 1.5rem;
         text-align: center;
-        background: #f8f9fa;
-        color: #6c757d;
+        background: var(--bg);
+        color: var(--muted-text);
     }
     
     /* Progress container */
     .progress-container {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
+        background: var(--bg);
+        border: 1px solid var(--border);
         border-radius: 8px;
         padding: 1rem;
         margin: 1rem 0;
@@ -149,13 +131,13 @@ st.markdown("""
     
     /* Campaign card */
     .campaign-card {
-        background: #ffffff;
-        border: 1px solid #e9ecef;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
         border-radius: 8px;
         padding: 1rem;
         margin: 1rem 0;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        border-left: 4px solid #6c757d;
+        border-left: 4px solid var(--accent);
     }
     
     /* Metric styling */
@@ -163,79 +145,43 @@ st.markdown("""
         font-size: 1.5rem;
         font-weight: bold;
         margin: 0.5rem 0;
-        color: #495057;
+        color: var(--text);
     }
     
     .metric-label {
         font-size: 0.85rem;
-        opacity: 0.7;
-        color: #6c757d;
+        opacity: 0.85;
+        color: var(--muted-text);
     }
     
     /* Status colors */
-    .status-success {
-        color: #28a745;
-        font-weight: bold;
-    }
-    
-    .status-error {
-        color: #dc3545;
-        font-weight: bold;
-    }
-    
-    .status-warning {
-        color: #ffc107;
-        font-weight: bold;
-    }
+    .status-success { color: var(--success-text); font-weight: bold; }
+    .status-error   { color: var(--error-text);   font-weight: bold; }
+    .status-warning { color: var(--warning-text); font-weight: bold; }
     
     /* Form elements */
-    .stDataFrame {
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid #e9ecef;
-    }
-    
-    .stSelectbox > div > div {
-        border-radius: 6px;
-    }
-    
-    .stTextInput > div > div > input {
-        border-radius: 6px;
-    }
-    
-    .stTextArea > div > div > textarea {
-        border-radius: 6px;
-    }
-    
-    .stSlider > div > div > div > div {
-        border-radius: 6px;
-    }
-    
-    .stCheckbox > div > div {
-        border-radius: 4px;
-    }
-    
-    .stNumberInput > div > div > input {
-        border-radius: 6px;
-    }
-    
-    .stFileUploader > div {
-        border-radius: 8px;
-    }
+    .stDataFrame { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .stSelectbox > div > div { border-radius: 6px; }
+    .stTextInput > div > div > input { border-radius: 6px; }
+    .stTextArea > div > div > textarea { border-radius: 6px; }
+    .stSlider > div > div > div > div { border-radius: 6px; }
+    .stCheckbox > div > div { border-radius: 4px; }
+    .stNumberInput > div > div > input { border-radius: 6px; }
+    .stFileUploader > div { border-radius: 8px; }
     
     /* Navigation styling */
     .nav-container {
-        background: #ffffff;
-        border: 1px solid #e9ecef;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
         border-radius: 8px;
         padding: 1rem;
         margin-bottom: 1rem;
     }
     
     .nav-title {
-        color: #495057;
+        color: var(--primary);
         font-size: 1.2rem;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 0.5rem;
     }
     

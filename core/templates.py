@@ -27,12 +27,21 @@ To unsubscribe, reply with "UNSUBSCRIBE" in the subject line."""
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{subject|default('Email')}}</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        :root {
+            --primary: #1f3a5f; /* navy */
+            --accent: #d4af37;  /* gold */
+            --text: #2c3e50;
+            --muted: #6c757d;
+            --bg: #f7f8fb;
+            --card-bg: #ffffff;
+        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #f8f9fa; padding: 20px; border-radius: 5px; }
-        .content { padding: 20px 0; }
-        .footer { background-color: #f8f9fa; padding: 20px; border-radius: 5px; font-size: 12px; color: #666; }
-        .unsubscribe { color: #dc3545; text-decoration: none; }
+        .header { background-color: var(--card-bg); padding: 20px; border-radius: 6px; border-left: 4px solid var(--accent); }
+        .header h2 { color: var(--primary); margin: 0; }
+        .content { padding: 20px 0; background: var(--card-bg); border-radius: 6px; margin-top: 12px; padding: 20px; }
+        .footer { background-color: var(--card-bg); padding: 16px 20px; border-radius: 6px; font-size: 12px; color: var(--muted); margin-top: 12px; border-top: 3px solid var(--accent); }
+        .unsubscribe { color: var(--primary); text-decoration: underline; }
     </style>
 </head>
 <body>
