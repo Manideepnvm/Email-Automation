@@ -203,8 +203,23 @@ if 'column_mapping' not in st.session_state:
 def main():
     """Main application function."""
     
-    # Sidebar with clean styling
-    st.sidebar.markdown('<div class="nav-container"><div class="nav-title">📧 Email Automation</div><p style="margin: 0; color: #6c757d; font-size: 0.9rem;">Professional Bulk Email Tool</p></div>', unsafe_allow_html=True)
+    # Enhanced sidebar with classic styling
+    st.sidebar.markdown("""
+    <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); 
+                color: white; 
+                padding: 1.5rem; 
+                border-radius: 12px; 
+                margin-bottom: 1.5rem;
+                text-align: center;
+                box-shadow: 0 4px 12px rgba(31, 58, 95, 0.3);">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📧</div>
+        <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Email Automation</div>
+        <div style="font-size: 0.9rem; opacity: 0.9;">Professional Bulk Email Tool</div>
+        <div style="margin-top: 1rem; padding: 0.25rem 0.75rem; background: var(--accent); color: var(--primary); border-radius: 4px; display: inline-block; font-weight: 600; font-size: 0.8rem;">
+            v2.0
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Check if credentials are configured
     if not settings.SMTP_USER or not settings.SMTP_PASS:
@@ -217,8 +232,20 @@ def main():
     if 'current_page' not in st.session_state:
         st.session_state.current_page = "🏠 Dashboard"
     
-    # Top navbar (horizontal)
-    st.markdown('<div class="nav-container"><div class="nav-title">🧭 Navigation</div></div>', unsafe_allow_html=True)
+    # Enhanced top navbar with classic styling
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg) 100%); 
+                border: 1px solid var(--border); 
+                padding: 1.5rem; 
+                border-radius: 12px; 
+                margin-bottom: 1.5rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+        <div style="color: var(--primary); font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;">
+            <span style="background: var(--accent); color: white; padding: 0.5rem; border-radius: 50%; margin-right: 0.75rem;">🧭</span>
+            Navigation
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     nav_options = [
         "🏠 Dashboard",
         "📁 Upload & Validate",
@@ -253,69 +280,265 @@ def main():
 
 def show_dashboard():
     """Show dashboard with overview and quick actions."""
-    # Main header with gradient
-    st.markdown('<div class="main-header"><h1>🚀 Bulk Email Automation Dashboard</h1><p>Professional email campaigns made simple</p></div>', unsafe_allow_html=True)
+    # Enhanced main header with classic styling
+    st.markdown("""
+    <div class="main-header">
+        <h1 style="margin: 0; color: var(--primary); font-size: 2.5rem;">🚀 Bulk Email Automation</h1>
+        <p style="margin: 0.5rem 0 0 0; color: var(--muted-text); font-size: 1.1rem;">Professional email campaigns made simple</p>
+        <div style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 4px; display: inline-block; font-weight: 600;">
+            Dashboard
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
+    # Welcome section with enhanced styling
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg) 100%); 
+                border: 1px solid var(--border); 
+                padding: 2rem; 
+                border-radius: 12px; 
+                margin-bottom: 2rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <h2 style="color: var(--primary); margin-bottom: 1rem;">🎯 Welcome to Your Email Command Center</h2>
+        <p style="color: var(--text); font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Streamline your email marketing with our professional automation tools. 
+            From list management to campaign execution, we've got you covered.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Main content area
     col1, col2 = st.columns([2, 1])
     
     with col1:
+        # Enhanced features section
         st.markdown("""
-        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
-            <h3>🎯 What You Can Do</h3>
-            <ul style="font-size: 1.1rem; line-height: 2;">
-                <li><strong>📁 Upload</strong> CSV, Excel, or text files with email addresses</li>
-                <li><strong>🔍 Validate</strong> and clean your email list automatically</li>
-                <li><strong>✍️ Personalize</strong> emails with smart templates and placeholders</li>
-                <li><strong>📤 Send</strong> campaigns with intelligent rate limiting</li>
-                <li><strong>📊 Monitor</strong> results and retry failed emails</li>
-            </ul>
+        <div style="background: var(--card-bg); 
+                    border: 1px solid var(--border); 
+                    padding: 2rem; 
+                    border-radius: 12px; 
+                    margin-bottom: 2rem;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                <span style="background: var(--accent); color: white; padding: 0.5rem; border-radius: 50%; margin-right: 0.75rem; font-size: 1.2rem;">⚡</span>
+                Powerful Features
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <h4 style="color: var(--primary); margin: 0 0 0.5rem 0;">📁 Smart Upload</h4>
+                    <p style="margin: 0; color: var(--muted-text); font-size: 0.9rem;">CSV, Excel, or text files with intelligent column detection</p>
+                </div>
+                <div style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <h4 style="color: var(--primary); margin: 0 0 0.5rem 0;">🔍 Auto-Validation</h4>
+                    <p style="margin: 0; color: var(--muted-text); font-size: 0.9rem;">Clean and validate emails automatically with detailed reporting</p>
+                </div>
+                <div style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <h4 style="color: var(--primary); margin: 0 0 0.5rem 0;">✍️ Smart Templates</h4>
+                    <p style="margin: 0; color: var(--muted-text); font-size: 0.9rem;">Personalize with placeholders and professional templates</p>
+                </div>
+                <div style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <h4 style="color: var(--primary); margin: 0 0 0.5rem 0;">📤 Intelligent Sending</h4>
+                    <p style="margin: 0; color: var(--muted-text); font-size: 0.9rem;">Rate limiting, retry logic, and comprehensive tracking</p>
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
-        # Quick stats with styled cards
+        # Enhanced campaign statistics
         if st.session_state.recipients_df is not None:
-            st.subheader("📊 Campaign Statistics")
+            st.markdown("""
+            <div style="background: var(--card-bg); 
+                        border: 1px solid var(--border); 
+                        padding: 1.5rem; 
+                        border-radius: 12px; 
+                        margin-bottom: 1rem;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                    <span style="background: var(--accent); color: white; padding: 0.5rem; border-radius: 50%; margin-right: 0.75rem;">📊</span>
+                    Campaign Statistics
+                </h3>
+            </div>
+            """, unsafe_allow_html=True)
+            
             total = len(st.session_state.recipients_df)
             
-            col1_1, col1_2, col1_3 = st.columns(3)
+            # Enhanced metric cards
+            col1_1, col1_2, col1_3, col1_4 = st.columns(4)
             with col1_1:
-                st.markdown(f'<div class="metric-card"><div class="metric-value">{total}</div><div class="metric-label">Total Recipients</div></div>', unsafe_allow_html=True)
+                st.markdown(f"""
+                <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); 
+                            color: white; 
+                            padding: 1.5rem; 
+                            border-radius: 12px; 
+                            text-align: center;
+                            box-shadow: 0 4px 12px rgba(31, 58, 95, 0.3);">
+                    <div style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">{total}</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Total Recipients</div>
+                </div>
+                """, unsafe_allow_html=True)
             
             if 'is_valid' in st.session_state.recipients_df.columns:
                 valid = st.session_state.recipients_df['is_valid'].sum()
                 invalid = total - valid
+                success_rate = (valid / total * 100) if total > 0 else 0
                 
                 with col1_2:
-                    st.markdown(f'<div class="success-card"><div class="metric-value">{valid}</div><div class="metric-label">Valid Emails</div></div>', unsafe_allow_html=True)
+                    st.markdown(f"""
+                    <div style="background: linear-gradient(135deg, var(--success-bg) 0%, #d4edda 100%); 
+                                border: 1px solid var(--success-border); 
+                                padding: 1.5rem; 
+                                border-radius: 12px; 
+                                text-align: center;
+                                box-shadow: 0 4px 12px rgba(27, 94, 32, 0.1);">
+                        <div style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--success-text);">{valid}</div>
+                        <div style="font-size: 0.9rem; color: var(--success-text);">Valid Emails</div>
+                    </div>
+                    """, unsafe_allow_html=True)
                 
                 with col1_3:
-                    st.markdown(f'<div class="warning-card"><div class="metric-value">{invalid}</div><div class="metric-label">Invalid Emails</div></div>', unsafe_allow_html=True)
+                    st.markdown(f"""
+                    <div style="background: linear-gradient(135deg, var(--warning-bg) 0%, #fff3cd 100%); 
+                                border: 1px solid var(--warning-border); 
+                                padding: 1.5rem; 
+                                border-radius: 12px; 
+                                text-align: center;
+                                box-shadow: 0 4px 12px rgba(138, 109, 26, 0.1);">
+                        <div style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--warning-text);">{invalid}</div>
+                        <div style="font-size: 0.9rem; color: var(--warning-text);">Invalid Emails</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                with col1_4:
+                    st.markdown(f"""
+                    <div style="background: linear-gradient(135deg, var(--accent) 0%, #b8941f 100%); 
+                                color: white; 
+                                padding: 1.5rem; 
+                                border-radius: 12px; 
+                                text-align: center;
+                                box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);">
+                        <div style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">{success_rate:.1f}%</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Success Rate</div>
+                    </div>
+                    """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown('<div class="info-card"><h3>🚀 Quick Actions</h3></div>', unsafe_allow_html=True)
+        # Enhanced quick actions section
+        st.markdown("""
+        <div style="background: var(--card-bg); 
+                    border: 1px solid var(--border); 
+                    padding: 1.5rem; 
+                    border-radius: 12px; 
+                    margin-bottom: 1.5rem;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                <span style="background: var(--accent); color: white; padding: 0.5rem; border-radius: 50%; margin-right: 0.75rem;">🚀</span>
+                Quick Actions
+            </h3>
+        </div>
+        """, unsafe_allow_html=True)
         
-        if st.button("📁 Upload New File", key="upload_btn"):
+        # Enhanced action buttons
+        action_style = """
+        <style>
+        .action-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(31, 58, 95, 0.2);
+        }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(31, 58, 95, 0.3);
+        }
+        </style>
+        """
+        st.markdown(action_style, unsafe_allow_html=True)
+        
+        if st.button("📁 Upload New File", key="upload_btn", help="Upload and validate your email list"):
             st.session_state.current_page = "📁 Upload & Validate"
         
-        if st.button("✍️ Compose Email", key="compose_btn"):
+        if st.button("✍️ Compose Email", key="compose_btn", help="Create your email campaign"):
             st.session_state.current_page = "✍️ Compose Email"
         
-        if st.button("📤 Send Campaign", key="send_btn"):
+        if st.button("📤 Send Campaign", key="send_btn", help="Send your campaign to all recipients"):
             st.session_state.current_page = "📤 Send Campaign"
         
-        # SMTP Status with better styling
-        st.markdown('<div class="metric-card"><h3>🔧 SMTP Status</h3></div>', unsafe_allow_html=True)
+        # Enhanced SMTP Status section
+        st.markdown("""
+        <div style="background: var(--card-bg); 
+                    border: 1px solid var(--border); 
+                    padding: 1.5rem; 
+                    border-radius: 12px; 
+                    margin-top: 1.5rem;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center;">
+                <span style="background: var(--accent); color: white; padding: 0.5rem; border-radius: 50%; margin-right: 0.75rem;">🔧</span>
+                System Status
+            </h3>
+        </div>
+        """, unsafe_allow_html=True)
+        
         try:
             mailer = EmailMailer()
             success, message = mailer.test_connection()
             if success:
-                st.markdown('<div class="success-card"><div class="metric-value">✅</div><div class="metric-label">Connected</div></div>', unsafe_allow_html=True)
+                st.markdown("""
+                <div style="background: linear-gradient(135deg, var(--success-bg) 0%, #d4edda 100%); 
+                            border: 1px solid var(--success-border); 
+                            padding: 1rem; 
+                            border-radius: 8px; 
+                            text-align: center;
+                            margin: 0.5rem 0;">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">✅</div>
+                    <div style="color: var(--success-text); font-weight: 600;">SMTP Connected</div>
+                    <div style="color: var(--success-text); font-size: 0.8rem; margin-top: 0.25rem;">Ready to send emails</div>
+                </div>
+                """, unsafe_allow_html=True)
             else:
-                st.markdown('<div class="warning-card"><div class="metric-value">❌</div><div class="metric-label">Connection Failed</div></div>', unsafe_allow_html=True)
-                st.caption(f"Error: {message}")
+                st.markdown(f"""
+                <div style="background: linear-gradient(135deg, var(--warning-bg) 0%, #fff3cd 100%); 
+                            border: 1px solid var(--warning-border); 
+                            padding: 1rem; 
+                            border-radius: 8px; 
+                            text-align: center;
+                            margin: 0.5rem 0;">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">❌</div>
+                    <div style="color: var(--warning-text); font-weight: 600;">Connection Failed</div>
+                    <div style="color: var(--warning-text); font-size: 0.8rem; margin-top: 0.25rem;">{message}</div>
+                </div>
+                """, unsafe_allow_html=True)
         except Exception as e:
-            st.markdown('<div class="error-card"><div class="metric-value">❌</div><div class="metric-label">Configuration Error</div></div>', unsafe_allow_html=True)
-            st.caption(f"Error: {str(e)}")
+            st.markdown(f"""
+            <div style="background: linear-gradient(135deg, var(--error-bg) 0%, #f8d7da 100%); 
+                        border: 1px solid var(--error-border); 
+                        padding: 1rem; 
+                        border-radius: 8px; 
+                        text-align: center;
+                        margin: 0.5rem 0;">
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">❌</div>
+                <div style="color: var(--error-text); font-weight: 600;">Configuration Error</div>
+                <div style="color: var(--error-text); font-size: 0.8rem; margin-top: 0.25rem;">{str(e)}</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # Add a helpful tip section
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, var(--info-bg) 0%, #e8f1f8 100%); 
+                    border: 1px solid var(--info-border); 
+                    padding: 1rem; 
+                    border-radius: 8px; 
+                    margin-top: 1rem;">
+            <div style="color: var(--info-text); font-size: 0.9rem; text-align: center;">
+                <strong>💡 Tip:</strong> Start by uploading your email list, then compose and send your campaign!
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
 def show_upload_validate():
     """Show file upload and validation page."""
